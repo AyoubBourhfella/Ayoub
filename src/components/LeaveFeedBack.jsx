@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaSpinner } from 'react-icons/fa'; // Import spinner from react-icons
-import emailjs from 'emailjs-com'; // Import EmailJS
+import apiService from './../configs/apiService';
 import Notification from './Notification';
-import { ImSpinner9 } from 'react-icons/im';
+import { ImSpinner9 } from 'react-icons/im'; // Import the spinner icon
 
-const ContactForm = () => {
+const LeaveFeedBack = () => {
     const [shownotif, setShownotif] = useState(false);
     const [message, setMessage] = useState('');
     const [notifstatue, setNotifstatue] = useState('');
-    const [isLoading, setIsLoading] = useState(false); // New state to track loading status
+    const [isLoading, setIsLoading] = useState(false); // Add loading state
 
     const [formData, setFormData] = useState({
         email: '',
         fullName: '',
-        message: '',
+        opinion: '',
+        rating: '5',
     });
 
     const handleChange = (e) => {
@@ -26,43 +26,40 @@ const ContactForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsLoading(true); // Set loading state to true when form is being submitted
-
-        const templateParams = {
-            fullName: formData.fullName,
-            email: formData.email,
-            message: formData.message,
-        };
+        setIsLoading(true); // Set loading to true when submitting
 
         try {
-            await emailjs.send(
-                'service_0mlhpwz',
-                'template_l9grr1n',
-                templateParams,
-                's3iqHlIUC-Y1Adaug'
-            );
+            const response = await apiService.post('/feedbacks', formData);
+            console.log(response);
 
-            setNotifstatue('success');
-            setMessage('Message sent successfully!');
-            setShownotif(true);
-
-            // Clear form
-            setFormData({
-                email: '',
-                fullName: '',
-                message: '',
-            });
+            if (response.status) {
+                setMessage(response.message);
+                setShownotif(true);
+                setNotifstatue('success');
+                setFormData({
+                    email: '',
+                    fullName: '',
+                    opinion: '',
+                    rating: '',
+                });
+            } else {
+                setMessage(response.message);
+                setShownotif(true);
+                setNotifstatue('error');
+            }
         } catch (error) {
-            setMessage('Failed to send message. Please try again.');
+            setMessage("An error occurred. Please try again.");
             setNotifstatue('error');
             setShownotif(true);
         } finally {
-            setIsLoading(false); // Reset loading state after submission is complete
+            setIsLoading(false); // Reset loading state after submission
             setTimeout(() => {
                 setShownotif(false);
             }, 3000);
         }
     };
+
+    const maxChars = 200;
 
     return (
         <motion.div
@@ -78,87 +75,101 @@ const ContactForm = () => {
                     stiffness: 100,
                     damping: 10,
                 },
+                filter: {
+                    duration: 0.5,
+                    type: 'spring',
+                    stiffness: 100,
+                    damping: 10,
+                },
             }}
             className="px-9 xl:px-0 text-center w-full h-full flex flex-col justify-start m-auto items-center xl:text-start"
         >
             <Notification shownotif={shownotif} message={message} statue={notifstatue} />
             <h2 className="text-xl font-bold mb-4 text-gray text-center font-Menlo_r">
-                Get in Touch
+                Want to leave feedback?
             </h2>
 
-            <div className="flex w-full">
-                <img className='w-1/3 object-cover' src="/get-in-touch-animate.svg" alt="" />
-
-                <form
-                    onSubmit={handleSubmit}
-                    className="lg:w-2/3 w-full flex flex-col p-5 items-center bg-dark z-30 border-2 rounded-md border-gray"
-                >
-                    {/* Form Fields */}
-                    <div className="flex flex-col sm:flex-row w-full gap-4 justify-center mb-4">
-                        <div className="mb-4 w-full sm:w-1/2">
-                            <label className="block text-white/80 text-start text-sm font-Menlo_r mb-2" htmlFor="email">
-                                Email
-                            </label>
-                            <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                className="py-3 px-4 bg-gray rounded-md w-full leading-tight focus:outline-none focus:shadow-outline"
-                                required
-                            />
-                        </div>
-                        <div className="mb-4 w-full sm:w-1/2">
-                            <label className="block text-white/80 text-start text-sm font-Menlo_r mb-2" htmlFor="fullName">
-                                Full Name
-                            </label>
-                            <input
-                                type="text"
-                                name="fullName"
-                                value={formData.fullName}
-                                onChange={handleChange}
-                                className="py-3 px-4 bg-gray rounded-md w-full leading-tight focus:outline-none focus:shadow-outline"
-                                required
-                            />
+            <form onSubmit={handleSubmit} className="lg:w-2/3 w-full flex flex-col p-5 items-center bg-dark z-30 border-2 rounded-md border-gray">
+                <div className="flex flex-col sm:flex-row w-full gap-4 justify-center mb-4">
+                    <div className="mb-4 w-full sm:w-1/2">
+                        <label className="block text-white/80 text-start text-sm font-Menlo_r mb-2" htmlFor="email">
+                            Email
+                        </label>
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            className="py-3 px-4 bg-gray rounded-md w-full leading-tight focus:outline-none focus:shadow-outline"
+                        />
+                    </div>
+                    <div className="mb-4 w-full sm:w-1/2">
+                        <label className="block text-white/80 text-start text-sm font-Menlo_r mb-2" htmlFor="fullName">
+                            Full Name
+                        </label>
+                        <input
+                            type="text"
+                            name="fullName"
+                            value={formData.fullName}
+                            onChange={handleChange}
+                            className="py-3 px-4 bg-gray rounded-md w-full leading-tight focus:outline-none focus:shadow-outline"
+                            required
+                        />
+                    </div>
+                </div>
+                <div className="flex w-full flex-col gap-4 items-center justify-center mb-4">
+                    <div className="mb-4 w-full">
+                        <label className="block text-white/80 text-start text-sm font-Menlo_r mb-2" htmlFor="opinion">
+                            Opinion
+                        </label>
+                        <textarea
+                            name="opinion"
+                            value={formData.opinion}
+                            onChange={handleChange}
+                            className="py-3 px-4 bg-gray rounded-md w-full leading-tight focus:outline-none focus:shadow-outline"
+                            maxLength={maxChars}
+                            required
+                        />
+                        <p className="text-white/60 text-end text-sm mt-2">
+                            {formData.opinion.length} / {maxChars} characters
+                        </p>
+                    </div>
+                </div>
+                <div className="flex w-full flex-row gap-4 items-center justify-center mb-4">
+                    <div className="mb-4">
+                        <label className="block text-white/80 text-start text-sm font-Menlo_r mb-2" htmlFor="rating">
+                            Rating
+                        </label>
+                        <div className="rating flex gap-2">
+                            {Array.from({ length: 5 }, (_, i) => (
+                                <input
+                                    key={i + 1}
+                                    type="radio"
+                                    name="rating"
+                                    value={i + 1}
+                                    checked={formData.rating === String(i + 1)}
+                                    onChange={handleChange}
+                                    className="mask mask-star-2 bg-orange-400"
+                                    aria-label={`Rate ${i + 1} stars`}
+                                />
+                            ))}
                         </div>
                     </div>
-
-                    {/* Message Field */}
-                    <div className="flex w-full flex-col gap-4 items-center justify-center mb-4">
-                        <div className="mb-4 w-full">
-                            <label className="block text-white/80 text-start text-sm font-Menlo_r mb-2" htmlFor="message">
-                                Your Message
-                            </label>
-                            <textarea
-                                name="message"
-                                value={formData.message}
-                                onChange={handleChange}
-                                className="py-3 px-4 bg-gray rounded-md w-full leading-tight focus:outline-none focus:shadow-outline"
-                                maxLength={500}  // Adjust max length if necessary
-                                required
-                            />
-                            <p className="text-white/60 text-end text-sm mt-2">
-                                {formData.message.length} / 500 characters
-                            </p>
-                        </div>
-                    </div>
-
                     <button
                         type="submit"
                         className="bg-primary w-full hover:bg-primary-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         disabled={isLoading} // Disable button while loading
                     >
                         {isLoading ? (
-                            <ImSpinner9 className=" animate-spin w-6 h-6 text-white mx-auto" /> // Use FaSpinner as the spinner icon
-
+                            <ImSpinner9 className="animate-spin w-6 h-6 text-white mx-auto" />
                         ) : (
-                            'Send Message'
+                            'Submit Feedback'
                         )}
                     </button>
-                </form>
-            </div>
+                </div>
+            </form>
         </motion.div>
     );
 };
 
-export default ContactForm;
+export default LeaveFeedBack;
