@@ -10,7 +10,7 @@ const Footer = () => {
 
             className=" bg-[#4f566d]/20">
             <h4 className='text-base text-white text-center  py-4'>
-                Ayoub Bourhfella - 2024
+                Ayoub Bourhfella - {new Date().getFullYear()} - All rights reserved.
             </h4>
 
 

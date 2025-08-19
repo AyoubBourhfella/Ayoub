@@ -2,8 +2,6 @@ import { motion } from 'framer-motion';
 import DecodeText from './DecodeText';
 import Skill from './Skill';
 import AdvanceSkills from './AdvSkill';
-import apiService from '../configs/apiService';
-import { useEffect, useState } from 'react';
 const Skills = () => {
 
     const AdvSkills = [
@@ -118,6 +116,125 @@ const Skills = () => {
             "icon": "https://img.icons8.com/?size=100&id=PndQWK6M1Hjo&format=png&color=000000",
             "color": "#7952B3",
             "description": "Learn Bootstrap for responsive and mobile-first web development."
+        },
+        {
+            "id": 17,
+            "name": "Material UI",
+            "icon": "https://img.icons8.com/color/96/material-ui.png",
+            "color": "#0081CB",
+            "description": "Build beautiful React apps with Material UI components."
+        },
+        {
+            "id": 18,
+            "name": "Supabase",
+            "icon": "https://img.icons8.com/?size=100&id=sH0rW2TvYdr9&format=png&color=000000",
+            "color": "#3ECF8E",
+            "description": "Use Supabase for open source Firebase alternatives and backend services."
+        },
+        {
+            "id": 19,
+            "name": "Redux",
+            "icon": "https://img.icons8.com/color/96/redux.png",
+            "color": "#764ABC",
+            "description": "Manage state efficiently in React apps with Redux."
+        },
+        {
+            "id": 20,
+            "name": "Redux Toolkit",
+            "icon": "https://redux-toolkit.js.org/img/redux.svg",
+            "color": "#764ABC",
+            "description": "Simplify Redux development with Redux Toolkit."
+        },
+        {
+            "id": 21,
+            "name": "Framer Motion",
+            "icon": "https://cdn.worldvectorlogo.com/logos/framer-motion.svg",
+            "color": "#0055FF",
+            "description": "Create animations and transitions in React with Framer Motion."
+        },
+        {
+            "id": 22,
+            "name": "Handlebars",
+            "icon": "https://img.icons8.com/?size=100&id=40690&format=png&color=000000",
+            "color": "#F0772B",
+            "description": "Use Handlebars for semantic web templates."
+        },
+        {
+            "id": 23,
+            "name": "shadcn/ui",
+            "icon": "https://avatars.githubusercontent.com/u/139895814?s=200&v=4",
+            "color": "#000000",
+            "description": "Build modern UIs with shadcn/ui components."
+        },
+        {
+            "id": 24,
+            "name": "ASP.NET Core",
+            "icon": "https://img.icons8.com/color/96/asp.png",
+            "color": "#512BD4",
+            "description": "Develop robust web APIs and apps with ASP.NET Core."
+        },
+        {
+            "id": 25,
+            "name": "C#",
+            "icon": "https://img.icons8.com/color/96/c-sharp-logo.png",
+            "color": "#239120",
+            "description": "Use C# for modern, object-oriented programming."
+        },
+        {
+            "id": 26,
+            "name": "PHP",
+            "icon": "https://img.icons8.com/officel/80/php-logo.png",
+            "color": "#777BB4",
+            "description": "Build dynamic web applications with PHP."
+        },
+        {
+            "id": 27,
+            "name": "Laravel",
+            "icon": "https://img.icons8.com/ios-filled/100/FA5252/laravel.png",
+            "color": "#FF2D20",
+            "description": "Develop elegant web apps with Laravel PHP framework."
+        },
+        {
+            "id": 28,
+            "name": "JWT",
+            "icon": "https://img.icons8.com/?size=100&id=rHpveptSuwDz&format=png&color=000000",
+            "color": "#000000",
+            "description": "Implement secure authentication with JWT (JSON Web Tokens)."
+        },
+        {
+            "id": 29,
+            "name": "RESTful API Design",
+            "icon": "https://img.icons8.com/ios-filled/100/000000/api-settings.png",
+            "color": "#4CAF50",
+            "description": "Design scalable and maintainable RESTful APIs."
+        },
+        {
+            "id": 30,
+            "name": "Swagger (OpenAPI)",
+            "icon": "https://help.apiary.io/images/swagger-logo.png",
+            "color": "#85EA2D",
+            "description": "Document and test APIs with Swagger (OpenAPI)."
+        },
+        {
+            "id": 31,
+            "name": "Electron.js",
+            "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Electron_Software_Framework_Logo.svg/2048px-Electron_Software_Framework_Logo.svg.png",
+            "color": "#47848F",
+            "description": "Build cross-platform desktop apps with Electron.js."
+        },
+        {
+            "id": 32,
+            "name": "Docker",
+            "icon": "https://img.icons8.com/color/96/docker.png",
+            "color": "#2496ED",
+            "description": "Containerize and deploy applications with Docker."
+        },
+        {
+            "id": 33,
+            "name": "TypeScript",
+            "icon": "https://img.icons8.com/color/96/typescript.png",
+            "color": "#3178C6",
+            "description": "Use TypeScript for safer and scalable JavaScript development."
         }
     ]
     
@@ -125,21 +242,21 @@ const Skills = () => {
         {
             "id": 1,
             "name": "HTML",
-            "icon": "https:\/\/cdn-icons-png.flaticon.com\/128\/1051\/1051277.png",
+            "icon": "https://cdn-icons-png.flaticon.com/128/1051/1051277.png",
             "color": "#E34F26",
             "extenstion": "html"
         },
         {
             "id": 2,
             "name": "CSS",
-            "icon": "https:\/\/cdn-icons-png.flaticon.com\/128\/732\/732190.png",
+            "icon": "https://cdn-icons-png.flaticon.com/128/732/732190.png",
             "color": "#1572B6",
             "extenstion": "css"
         },
         {
             "id": 3,
             "name": "JavaScript",
-            "icon": "https:\/\/cdn-icons-png.flaticon.com\/128\/5968\/5968292.png",
+            "icon": "https://cdn-icons-png.flaticon.com/128/5968/5968292.png",
             "color": "#F7DF1E",
             "extenstion": "js"
         }
@@ -148,8 +265,8 @@ const Skills = () => {
     
     return (
         <motion.div
-            initial={{ opacity: 0, y: -200, opacity: 0, scale: 1.1 }} // Starts offscreen to the left with a larger scale
-            whileInView={{ opacity: 1, y: 0, scale: 1, opacity: 1 }} // Moves to the center and scales downfinal horizontal position and scales down
+            initial={{ opacity: 0, y: -200,  scale: 1.1 }} // Starts offscreen to the left with a larger scale
+            whileInView={{ opacity: 1, y: 0, scale: 1 }} // Moves to the center and scales downfinal horizontal position and scales down
 
             transition={{
                 y: { duration: 1, ease: "easeOut" }, // Controls the horizontal slide duration and easing

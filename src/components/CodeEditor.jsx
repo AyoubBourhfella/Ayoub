@@ -6,7 +6,6 @@ import { javascript } from '@codemirror/lang-javascript';
 import js from '../assets/images/js.png';
 import game from '../assets/images/game.png';
 import run from '../assets/images/run.svg';
-import { FaCross } from 'react-icons/fa6';
 import { ImCross } from 'react-icons/im';
 
 const CodeEditor = () => {
@@ -17,17 +16,33 @@ const CodeEditor = () => {
     const [toggle, setToggle] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
     const [gameMatch , setGameMatch] = useState('');
-    const [code, setCode] = useState(`const Knowledge = {
-        frontEnd:       ['HTML', 'CSS', 'Tailwind', 'BootStrap', 'JavaScript'],
-        backEnd:        ['PHP', 'Firebase', 'SQL', 'PostgreSQL', 'MongoDB', 'Node.js', 'Express.js'],
-        FrameWorks:     ['React', 'React Native', 'Flutter'],
-        languages:      ['Python' , 'Dart'],
-        design:         [ 'Figma', 'Adobe Illustrator'],
-        tools:          ['Git', 'GitHub', 'Microsoft Office', 'Linux'],
-        softSkills:     ['Fluent in Arabic', 'Fluent in French', 'Fluent in English']
-    }
+const [code, setCode] = useState(`const Knowledge = {
+    frontEnd: [ 'HTML',  'CSS',  'Tailwind CSS',  'Bootstrap',  'Material UI',
+              'JavaScript',  'Framer Motion',  'shadcn/ui',  'Handlebars'],
 
-    console.log('More is coming soon!');`);
+    backEnd: ['Node.js', 'Express.js', 'PHP', 'Laravel', 'Firebase', 'Supabase',
+                 'SQL', 'PostgreSQL', 'MongoDB', 'RESTful API', 'JWT', 'Swagger'],
+
+    frameworks: ['React.js', 'React Native', 'Redux', 'Redux Toolkit', 'Flutter',
+                'Laravel', 'ASP.NET Core', 'Electron.js'],
+
+    languages: ['JavaScript', 'TypeScript', 'Python', 'Dart', 'C#', 'PHP'],
+
+    tools: ['Git', 'GitHub', 'VS Code', 'Figma', 'Adobe Illustrator', 'Linux',
+            'Docker'],
+
+    softSkills: [
+        'Problem Solving', 
+        'Team Collaboration', 
+        'Project Management', 
+        'Fluent in Arabic', 
+        'Fluent in French', 
+        'Fluent in English'
+    ]
+}
+
+console.log('🚀 More is coming soon!');`);
+
 
     const codeSnippet1 = `const Knowledge = {
 frontEnd:       ['HTML', 'CSS', 'Tailwind', 'BootStrap', 'JavaScript'],

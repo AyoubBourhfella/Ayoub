@@ -81,7 +81,7 @@ const ContactForm = () => {
             className="px-9 xl:px-0 text-center w-full h-full flex flex-col justify-start m-auto items-center xl:text-start"
         >
             <Notification shownotif={shownotif} message={message} statue={notifstatue} />
-            <h2 className="text-xl font-bold mb-4 text-gray text-center font-Menlo_r">
+            <h2 className="text-xl font-bold mb-4 text-white text-center font-Menlo_r">
                 Get in Touch
             </h2>
 
@@ -103,7 +103,7 @@ const ContactForm = () => {
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                className="py-3 px-4 bg-gray rounded-md w-full leading-tight focus:outline-none focus:shadow-outline"
+                                className="py-3 px-4 bg-gray text-white rounded-md w-full leading-tight focus:outline-none focus:shadow-outline"
                                 required
                             />
                         </div>
@@ -116,7 +116,7 @@ const ContactForm = () => {
                                 name="fullName"
                                 value={formData.fullName}
                                 onChange={handleChange}
-                                className="py-3 px-4 bg-gray rounded-md w-full leading-tight focus:outline-none focus:shadow-outline"
+                                className="py-3 px-4 bg-gray text-white rounded-md w-full leading-tight focus:outline-none focus:shadow-outline"
                                 required
                             />
                         </div>
@@ -132,7 +132,7 @@ const ContactForm = () => {
                                 name="message"
                                 value={formData.message}
                                 onChange={handleChange}
-                                className="py-3 px-4 bg-gray rounded-md w-full leading-tight focus:outline-none focus:shadow-outline"
+                                className="py-3 px-4 bg-gray text-white rounded-md w-full leading-tight focus:outline-none focus:shadow-outline"
                                 maxLength={500}  // Adjust max length if necessary
                                 required
                             />

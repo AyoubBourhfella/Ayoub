@@ -5,6 +5,15 @@ import { useState } from 'react';
 const Myworks = () => {
     const worksList = [
         {
+            id: 0,
+            type: ['web'], 
+            title: 'Desert Bridge',
+            description: 'A web platform designed for booking and managing personalized desert tours, offering unique travel experiences across Morocco.',
+            image: '/Projets/desertbridge.png',
+            link: 'https://desertbridge.ma' ,
+            availble : true
+        },
+        {
             id: 1,
             type: ['web'], 
             title: 'Plan-Jeu',
@@ -87,8 +96,8 @@ const Myworks = () => {
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: -200, opacity: 0, scale: 1.1 }} 
-            whileInView={{ opacity: 1, y: 0, scale: 1, opacity: 1 }} // Moves to the center and scales downfinal horizontal position and scales down
+            initial={{ opacity: 0, y: -200, scale: 1.1 }} 
+            whileInView={{ opacity: 1, y: 0, scale: 1 }} // Moves to the center and scales down
 
             transition={{
                 y: { duration: 1, ease: "easeOut" }, // Controls the horizontal slide duration and easing
@@ -115,7 +124,7 @@ const Myworks = () => {
                 <span className="text-primary">&gt;</span>
             </h1>
             <div className="flex w-full">
-                <form action="" className='flex items-center justify-evenly w-1/2 mx-auto' >
+                <form action="" className='flex items-center justify-center md: gap-5 w-1/2 mx-auto' >
                     <input onChange={(e)=> { handleChange(e)} } type="radio" value="all" name="filter" id="all" defaultChecked className='hidden' />
                     <label htmlFor="all" className='py-1 min-w-24 text-center cursor-pointer hover:scale-105  text-xl text-gray border border-gray rounded-full '>All</label>
                     <input onChange={(e)=> { handleChange(e)} } type="radio" value="web" name="filter" id="web" className='hidden' />
